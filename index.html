@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Absensi Harian - Wali Kelas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <!-- LOGIN -->
+  <div id="loginPage" class="panel center">
+    <div class="card login-card">
+      <img src="image/Kucing putih.jpg" alt="Logo Sekolah" class="logo" />
+      <h2>Login Wali Kelas</h2>
+      <input id="username" placeholder="Nama pengguna" />
+      <input id="password" placeholder="Kata sandi" type="password" />
+      <button id="loginBtn">Masuk</button>
+      <p class="muted">Gunakan akun wali untuk mengakses form</p>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="mainPage" class="container" style="display:none;">
+    <header class="app-header card">
+      <div class="left">
+        <img src="logo-placeholder.png" class="logo-small" alt="Logo" />
+        <div>
+          <h1>Absensi Harian</h1>
+          <p class="muted">Wali Kelas — Rekap otomatis & export Excel</p>
+        </div>
+      </div>
+      <div class="right">
+        <button id="logoutBtn" class="ghost">Logout</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card form-card">
+        <h3>Form Absensi</h3>
+
+        <div class="grid-4">
+          <div class="field">
+            <label>Hari</label>
+            <select id="daySelect">
+              <option>Senin</option><option>Selasa</option><option>Rabu</option>
+              <option>Kamis</option><option>Jumat</option><option>Sabtu</option>
+              <option>Minggu</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Tanggal</label>
+            <select id="dateSelect"></select>
+          </div>
+
+          <div class="field">
+            <label>Bulan</label>
+            <select id="monthSelect">
+              <option value="1">Januari</option><option value="2">Februari</option>
+              <option value="3">Maret</option><option value="4">April</option>
+              <option value="5">Mei</option><option value="6">Juni</option>
+              <option value="7">Juli</option><option value="8">Agustus</option>
+              <option value="9">September</option><option value="10">Oktober</option>
+              <option value="11">November</option><option value="12">Desember</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Tahun</label>
+            <select id="yearSelect"></select>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="field">
+            <label>Semester</label>
+            <select id="semesterSelect"><option>Ganjil</option><option>Genap</option></select>
+          </div>
+          <div class="field">
+            <label>Catatan (opsional)</label>
+            <input id="noteInput" placeholder="Contoh: ujian, pindah ruangan" />
+          </div>
+          <div class="field action-col">
+            <button id="saveBtn" class="primary">Simpan Absensi</button>
+            <button id="summaryBtn" class="muted">Tampilkan Ringkasan (%)</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="studentsTable">
+            <thead><tr><th>No</th><th>Nama Siswa</th><th>Status</th></tr></thead>
+            <tbody id="studentsTbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="card side-card">
+        <h4>Rekap & Export</h4>
+
+        <label>Jenis rekap</label>
+        <select id="exportType">
+          <option value="monthly">Per Bulan</option>
+          <option value="trimester">Per 3 Bulan</option>
+          <option value="semester">Per Semester</option>
+          <option value="yearly">Per Tahun</option>
+        </select>
+
+        <label>Bulan (untuk opsi bulan/3 bulan)</label>
+        <select id="exportMonth"><option value="1">1</option><option value="2">2</option><!--...--></select>
+
+        <label>Tahun</label>
+        <select id="exportYear"></select>
+
+        <label>Semester (jika export semester)</label>
+        <select id="exportSemester"><option>Ganjil</option><option>Genap</option></select>
+
+        <button id="exportBtn" class="primary">Buat & Download Rekap (.xlsx)</button>
+
+        <hr />
+        <div id="summaryBox">
+          <h5>Ringkasan Kehadiran</h5>
+          <div id="summaryTableWrap" class="table-wrap small">
+            <table id="summaryTable"><thead><tr><th>No</th><th>Nama</th><th>% Hadir</th></tr></thead><tbody></tbody></table>
+          </div>
+        </div>
+
+        <div id="downloadLinkWrap" style="margin-top:10px"></div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <small>Ganti <code>GOOGLE_SCRIPT_URL</code> dan <code>SPREADSHEET_ID</code> sesuai instruksi di <code>script.js</code> & <code>Code.gs</code>.</small>
+    </footer>
+  </div>
+
+  <!-- notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
